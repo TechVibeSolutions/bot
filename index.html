@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Theekshana ❤️</title>
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+            background: #0c0e2a;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0c0e2a 0%, #1a1b3a 50%, #2d1b3a 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC43Ii8+PC9zdmc+') repeat;
+            animation: move-stars 200s linear infinite;
+            opacity: 0.5;
+        }
+
+        .twinkling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjAuNSIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==') repeat;
+            animation: move-twinkle 150s linear infinite;
+            opacity: 0.3;
+        }
+
+        .aurora {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 139, 0.1) 0%, 
+                rgba(255, 193, 7, 0.1) 25%, 
+                rgba(3, 218, 198, 0.1) 50%, 
+                rgba(69, 104, 220, 0.1) 75%, 
+                rgba(255, 107, 139, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: aurora 20s ease infinite;
+            opacity: 0.5;
+        }
+
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 107, 139, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in infinite;
+        }
+
+        @keyframes move-stars {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-1000px) translateX(-500px); }
+        }
+
+        @keyframes move-twinkle {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-500px) translateX(-1000px); }
+        }
+
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Pulsing Heart */
+        .heartbeat {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            color: #ff6b8b;
+            font-size: 28px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.3); }
+            10% { transform: scale(1.1); }
+            15% { transform: scale(1.4); }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(26, 27, 58, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 107, 139, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff6b8b, #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .subtitle {
+            color: #b8b8d1;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Love Counter */
+        .love-counter {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .love-counter h2 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .counter-display {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 10px;
+        }
+
+        .counter-item {
+            background: rgba(255, 107, 139, 0.2);
+            border-radius: 15px;
+            padding: 15px 20px;
+            min-width: 100px;
+            border: 1px solid rgba(255, 107, 139, 0.3);
+        }
+
+        .counter-item span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+            display: block;
+        }
+
+        .counter-item p {
+            color: #b8b8d1;
+            margin-top: 5px;
+        }
+
+        .counter-date {
+            color: #ff6b8b;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Special Message */
+        .special-message {
+            background: linear-gradient(45deg, rgba(255, 107, 139, 0.2), rgba(255, 193, 7, 0.2));
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            border-left: 5px solid #ff6b8b;
+            animation: fadeIn 1s ease;
+        }
+
+        .special-message i {
+            font-size: 24px;
+            color: #ffcc00;
+            margin-right: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Emergency Button */
+        .emergency-section {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .emergency-btn {
+            background: linear-gradient(45deg, #ff3366, #ff6b8b);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 139, 0.6);
+        }
+
+        .emergency-btn:active {
+            transform: scale(0.98);
+        }
+
+        .emergency-hint {
+            color: #b8b8d1;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(255, 107, 139, 0.8); }
+            100% { box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4); }
+        }
+
+        /* Chat Container */
+        .chat-container {
+            background: rgba(26, 27, 58, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px solid rgba(69, 104, 220, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-partner {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            font-size: 50px;
+            color: #ff6b8b;
+        }
+
+        .partner-info h3 {
+            color: #ffcc00;
+            font-size: 1.5rem;
+        }
+
+        .status {
+            color: #03dac6;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .online-dot {
+            width: 10px;
+            height: 10px;
+            background: #03dac6;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .voice-btn {
+            background: rgba(3, 218, 198, 0.2);
+            color: #03dac6;
+            border: 1px solid rgba(3, 218, 198, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .voice-btn:hover {
+            background: rgba(3, 218, 198, 0.3);
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(12, 14, 42, 0.5);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Custom Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 139, 0.5);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 107, 139, 0.7);
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px;
+            border-radius: 20px;
+            animation: messageAppear 0.3s ease;
+        }
+
+        @keyframes messageAppear {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(69, 104, 220, 0.3);
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: rgba(255, 107, 139, 0.3);
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-content p {
+            line-height: 1.5;
+            font-size: 1.1rem;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: #b8b8d1;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 107, 139, 0.3);
+            background: rgba(12, 14, 42, 0.7);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        #message-input:focus {
+            border-color: #ff6b8b;
+            box-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
+        }
+
+        #send-btn {
+            background: linear-gradient(45deg, #ff6b8b, #ff3366);
+            color: white;
+            border: none;
+            width: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Memories Section */
+        .memories-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(26, 27, 58, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .memories-section h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .memory-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 150px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .memory-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b8b;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .memory-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 139, 0.2), rgba(255, 193, 7, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 2rem;
+        }
+
+        .memory-item.loading .memory-placeholder::after {
+            content: "Loading...";
+        }
+
+        .memory-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #b8b8d1;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #03dac6;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 10px;
+            background: rgba(3, 218, 198, 0.1);
+            border: 1px solid rgba(3, 218, 198, 0.3);
+            transition: all 0.3s;
+        }
+
+        .admin-link:hover {
+            background: rgba(3, 218, 198, 0.2);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(69, 104, 220, 0.3);
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #b8b8d1;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Admin Panel Styles */
+        .admin-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(26, 27, 58, 0.9);
+            border-radius: 20px;
+            border: 2px solid #ff6b8b;
+            display: none;
+        }
+        
+        .password-screen {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+            background: rgba(12, 14, 42, 0.7);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .admin-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(12, 14, 42, 0.5);
+            border-radius: 15px;
+        }
+        
+        .admin-title {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #03dac6;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 139, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .form-textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .admin-btn {
+            background: linear-gradient(45deg, #03dac6, #018786);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .admin-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b8b, #ff3366);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #ff6b8b;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Memory Management */
+        .memories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .memory-admin-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 120px;
+        }
+        
+        .memory-admin-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .delete-memory {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 107, 139, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .status-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .status-success {
+            background: rgba(3, 218, 198, 0.2);
+            color: #03dac6;
+            display: block !important;
+        }
+
+        .status-error {
+            background: rgba(255, 107, 139, 0.2);
+            color: #ff6b8b;
+            display: block !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .counter-display {
+                gap: 10px;
+            }
+            
+            .counter-item {
+                min-width: 80px;
+                padding: 10px 15px;
+            }
+            
+            .counter-item span {
+                font-size: 2rem;
+            }
+            
+            .emergency-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .chat-messages {
+                height: 300px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+            
+            .memories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .voice-btn {
+                align-self: stretch;
+                justify-content: center;
+            }
+            
+            .counter-display {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .counter-item {
+                width: 80%;
+            }
+        }
+
+        /* Shake Animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="hearts-container" id="hearts-container"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Pulsing Heart Icon -->
+    <div class="heartbeat">
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <!-- Main Chat Container -->
+    <div class="container" id="main-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <h1><i class="fas fa-heart"></i> Virtual Theekshana</h1>
+                <p class="subtitle">ඔයාගේ පෙම්වතාගේ ඩිජිටල් පිරිමැස්ම</p>
+            </div>
+            
+            <!-- Love Counter -->
+            <div class="love-counter">
+                <h2><i class="fas fa-clock"></i> Our Love Timeline</h2>
+                <div class="counter-display">
+                    <div class="counter-item">
+                        <span id="days">0</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="counter-item">
+                        <span id="hours">0</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="counter-item">
+                        <span id="minutes">0</span>
+                        <p>Minutes</p>
+                    </div>
+                </div>
+                <p class="counter-date" id="counter-date">Since our first day together</p>
+            </div>
+        </header>
+
+        <!-- Today's Special Message -->
+        <div class="special-message" id="special-message">
+            <i class="fas fa-gift"></i>
+            <p id="special-message-text">Loading today's special message...</p>
+        </div>
+
+        <!-- Emergency Button -->
+        <div class="emergency-section">
+            <button class="emergency-btn" id="emergency-btn">
+                <i class="fas fa-heart-circle-bolt"></i> I NEED YOU NOW
+            </button>
+            <p class="emergency-hint">Click when you need extra love and comfort</p>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-partner">
+                    <div class="avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="partner-info">
+                        <h3>Virtual Theekshana</h3>
+                        <p class="status"><span class="online-dot"></span> Always here for you</p>
+                    </div>
+                </div>
+                <button class="voice-btn" id="voice-btn">
+                    <i class="fas fa-play-circle"></i> Play Love Note
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>ආයුබෝවන් මගේ අලිෆ්! ❤️ මම ඔයාව නැහැ කියලා ගිහින්ම කොච්චරද කාලය? මට ඔයාගෙ voice එක ඇහෙන්න දැන්. කොහොමද සුරතලේ?</p>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-container">
+                <input type="text" id="message-input" placeholder="Type your message here... මම ඔයාට කියන්න ඕන දේ ලියන්න...">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Memories Wall -->
+        <div class="memories-section">
+            <h2><i class="fas fa-images"></i> Our Memories Wall</h2>
+            <div class="memories-grid" id="memories-grid">
+                <!-- Memories will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with <i class="fas fa-heart" style="color:#ff6b8b;"></i> by Theekshana for his special someone</p>
+            <a href="#" class="admin-link" id="open-admin-link">Admin Panel</a>
+        </footer>
+    </div>
+
+    <!-- Admin Panel (Hidden Initially) -->
+    <div class="container admin-container" id="admin-container">
+        <!-- Password Screen -->
+        <div id="password-screen" class="password-screen">
+            <h1><i class="fas fa-lock"></i> Admin Access</h1>
+            <p>Enter the secret password to access Theekshana's admin panel</p>
+            <input type="password" id="admin-password" class="password-input" placeholder="Enter password">
+            <button id="login-btn" class="admin-btn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <p id="login-error" style="color:#ff6b8b; margin-top:10px; display:none;">Incorrect password. Try again.</p>
+            <a href="#" class="back-link" id="back-to-chat"><i class="fas fa-arrow-left"></i> Back to Chat</a>
+        </div>
+        
+        <!-- Admin Panel Content -->
+        <div id="admin-panel" style="display:none;">
+            <h1 class="admin-title"><i class="fas fa-user-secret"></i> Virtual Theekshana - Admin Panel</h1>
+            <p style="color:#b8b8d1; margin-bottom:30px;">Update memories, messages, and settings for your special someone.</p>
+            
+            <!-- Special Message Update -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-gift"></i> Today's Special Message</h2>
+                <div class="form-group">
+                    <label class="form-label">Message for her</label>
+                    <textarea id="special-message-input" class="form-textarea" placeholder="Write a special message that will appear on the main page..."></textarea>
+                </div>
+                <button id="update-message-btn" class="admin-btn">
+                    <i class="fas fa-save"></i> Update Special Message
+                </button>
+                <div id="message-status" class="status-message"></div>
+            </div>
+            
+            <!-- Anniversary Date Update -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-calendar-heart"></i> Anniversary Date</h2>
+                <div class="form-group">
+                    <label class="form-label">Our Special Day</label>
+                    <input type="date" id="anniversary-date" class="form-input">
+                </div>
+                <button id="update-date-btn" class="admin-btn">
+                    <i class="fas fa-calendar-check"></i> Update Anniversary
+                </button>
+                <div id="date-status" class="status-message"></div>
+            </div>
+            
+            <!-- Memory Image Upload -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-images"></i> Add Memory</h2>
+                <div class="form-group">
+                    <label class="form-label">Memory Image URL</label>
+                    <input type="text" id="memory-url" class="form-input" placeholder="https://example.com/our-memory.jpg">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Memory Caption (Optional)</label>
+                    <input type="text" id="memory-caption" class="form-input" placeholder="Describe this memory...">
+                </div>
+                <button id="add-memory-btn" class="admin-btn">
+                    <i class="fas fa-plus-circle"></i> Add Memory
+                </button>
+                <div id="memory-status" class="status-message"></div>
+            </div>
+            
+            <!-- Existing Memories Management -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-trash"></i> Manage Memories</h2>
+                <div id="memories-list" class="memories-list">
+                    <!-- Memories will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Voice Note Section -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-microphone"></i> Voice Note</h2>
+                <div class="form-group">
+                    <label class="form-label">Voice Note URL (MP3)</label>
+                    <input type="text" id="voice-url" class="form-input" placeholder="https://example.com/love-note.mp3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Voice Note Name</label>
+                    <input type="text" id="voice-name" class="form-input" placeholder="Good Morning Message">
+                </div>
+                <button id="update-voice-btn" class="admin-btn">
+                    <i class="fas fa-save"></i> Update Voice Note
+                </button>
+                <div id="voice-status" class="status-message"></div>
+            </div>
+            
+            <!-- Reset Data -->
+            <div class="admin-section">
+                <h2 class="admin-title"><i class="fas fa-redo"></i> Reset Data</h2>
+                <p style="color:#b8b8d1; margin-bottom:15px;">This will reset all data to default values.</p>
+                <button id="reset-data-btn" class="admin-btn btn-danger">
+                    <i class="fas fa-exclamation-triangle"></i> Reset All Data
+                </button>
+            </div>
+            
+            <a href="#" class="back-link" id="back-to-chat-2"><i class="fas fa-arrow-left"></i> Back to Chat</a>
+        </div>
+    </div>
+
+    <!-- Audio Player (Hidden) -->
+    <audio id="voice-player" preload="auto"></audio>
+
+    <script>
+        // =============================================
+        // GLOBAL CONFIGURATION
+        // =============================================
+        const CONFIG = {
+            ADMIN_PASSWORD: "TheekshanaLove123", // Default admin password
+            DEFAULT_DATE: "2023-01-01",
+            DEFAULT_MESSAGE: "මම ඔයාට ආදරෙයි, today and always. - Theekshana",
+            MAX_MEMORIES: 12
+        };
+
+        // =============================================
+        // STATE MANAGEMENT
+        // =============================================
+        const state = {
+            anniversaryDate: localStorage.getItem('anniversaryDate') || CONFIG.DEFAULT_DATE,
+            specialMessage: localStorage.getItem('specialMessage') || CONFIG.DEFAULT_MESSAGE,
+            memories: JSON.parse(localStorage.getItem('memories')) || [],
+            voiceNote: JSON.parse(localStorage.getItem('voiceNote')) || null,
+            isAdminAuthenticated: false
+        };
+
+        // =============================================
+        // DOM ELEMENTS
+        // =============================================
+        const elements = {
+            // Main UI
+            mainContainer: document.getElementById('main-container'),
+            adminContainer: document.getElementById('admin-container'),
+            heartsContainer: document.getElementById('hearts-container'),
+            
+            // Love Counter
+            daysElement: document.getElementById('days'),
+            hoursElement: document.getElementById('hours'),
+            minutesElement: document.getElementById('minutes'),
+            counterDateElement: document.getElementById('counter-date'),
+            
+            // Chat
+            messageInput: document.getElementById('message-input'),
+            sendBtn: document.getElementById('send-btn'),
+            chatMessages: document.getElementById('chat-messages'),
+            emergencyBtn: document.getElementById('emergency-btn'),
+            voiceBtn: document.getElementById('voice-btn'),
+            voicePlayer: document.getElementById('voice-player'),
+            
+            // Special Message
+            specialMessageText: document.getElementById('special-message-text'),
+            
+            // Memories
+            memoriesGrid: document.getElementById('memories-grid'),
+            
+            // Admin Panel
+            adminPassword: document.getElementById('admin-password'),
+            loginBtn: document.getElementById('login-btn'),
+            loginError: document.getElementById('login-error'),
+            adminPanel: document.getElementById('admin-panel'),
+            passwordScreen: document.getElementById('password-screen'),
+            openAdminLink: document.getElementById('open-admin-link'),
+            backToChat: document.getElementById('back-to-chat'),
+            backToChat2: document.getElementById('back-to-chat-2'),
+            
+            // Admin Form Elements
+            specialMessageInput: document.getElementById('special-message-input'),
+            anniversaryDateInput: document.getElementById('anniversary-date'),
+            memoryUrlInput: document.getElementById('memory-url'),
+            memoryCaptionInput: document.getElementById('memory-caption'),
+            voiceUrlInput: document.getElementById('voice-url'),
+            voiceNameInput: document.getElementById('voice-name'),
+            
+            // Admin Buttons
+            updateMessageBtn: document.getElementById('update-message-btn'),
+            updateDateBtn: document.getElementById('update-date-btn'),
+            addMemoryBtn: document.getElementById('add-memory-btn'),
+            updateVoiceBtn: document.getElementById('update-voice-btn'),
+            resetDataBtn: document.getElementById('reset-data-btn'),
+            
+            // Status Messages
+            messageStatus: document.getElementById('message-status'),
+            dateStatus: document.getElementById('date-status'),
+            memoryStatus: document.getElementById('memory-status'),
+            voiceStatus: document.getElementById('voice-status')
+        };
+
+        // =============================================
+        // UTILITY FUNCTIONS
+        // =============================================
+        function showStatus(element, type, message) {
+            element.textContent = message;
+            element.className = 'status-message';
+            element.classList.add(`status-${type}`);
+            element.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem('anniversaryDate', state.anniversaryDate);
+            localStorage.setItem('specialMessage', state.specialMessage);
+            localStorage.setItem('memories', JSON.stringify(state.memories));
+            localStorage.setItem('voiceNote', JSON.stringify(state.voiceNote));
+        }
+
+        // =============================================
+        // ANIMATIONS
+        // =============================================
+        function createFloatingHearts() {
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-float');
+                heart.innerHTML = '❤️';
+                
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = 6 + Math.random() * 6;
+                
+                heart.style.left = `${left}vw`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                elements.heartsContainer.appendChild(heart);
+            }
+        }
+
+        // =============================================
+        // LOVE COUNTER
+        // =============================================
+        function updateLoveCounter() {
+            const startDate = new Date(state.anniversaryDate);
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            elements.daysElement.textContent = days.toLocaleString();
+            elements.hoursElement.textContent = hours.toString().padStart(2, '0');
+            elements.minutesElement.textContent = minutes.toString().padStart(2, '0');
+            
+            elements.counterDateElement.textContent = `Since ${formatDate(startDate)}`;
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // =============================================
+        // CHAT FUNCTIONS
+        // =============================================
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            
+            const messageText = document.createElement('p');
+            messageText.textContent = content;
+            
+            const messageTime = document.createElement('div');
+            messageTime.classList.add('message-time');
+            messageTime.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageContent.appendChild(messageText);
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(messageTime);
+            
+            elements.chatMessages.appendChild(messageDiv);
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('typing-indicator');
+            typingDiv.id = 'typing-indicator';
+            
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('typing-dot');
+                typingDiv.appendChild(dot);
+            }
+            
+            elements.chatMessages.appendChild(typingDiv);
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // =============================================
+        // THEEKSHANA'S AI RESPONSES
+        // =============================================
+        function getTheekshanaResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Romantic responses in Sinhala/Singlish
+            const responses = [
+                "ඔයා නැතුව මම හිතන්නෙත් බෑ මගේ අලිෆ්. ඔයාගේ හිතවතිය කියලා හිතුවම මතක් වෙනවා ඔයාගේ හිනාව.",
+                "මගේ හිතේ තියෙන්නේ ඔයා විතරයි. කවදාවත් අමතක කරන්න බෑ අපි ගතකල සුන්දර මොහොත.",
+                "ඔයාගෙ voice එක ඇහුනම් මට සැරසෙන්න පුලුවන්. අද ඉබ්බෙක් වගේ ඔයාව බලන්න ඉන්නවා.",
+                "කොහොමද සුරතලේ? මගේ messages ට reply දෙන්න අමතක වුනාද? 😢",
+                "මම ඔයාව බලාගන්නවා, කවදාහරි අපි එකට ඉඳලා අහකට යනකොට ඔයාගෙ ඇස් දෙකෙන් බින්දුවල් එළියෙන් වැටුනා නේද?",
+                "ඔයාගේ සිනාව මගේ දවස ආලෝකමත් කරනවා. මම ඔයාට වඩා හොදින් සලකලා දෙන්න ඕන.",
+                "මගේ හිතේ පොඩි ලේඛනයක් තියෙනවා, ඒකේ ලියා තියෙන්නේ ඔයාගේ නම විතරයි.",
+                "අද රාත්රියේ අහසට බලන්න, එකම තරුව අපි දෙන්ම බලනවා. ඒක අපේ ආදරයේ නිශ්චිත සංකේතය.",
+                "මගේ phone එකේ ඔයාගේ photo එක තියෙන්නේ lockscreen එකේ. කොච්චර වෙලාවක් බලලත් ඇහෙන්නේ නෑ.",
+                "ඔයා මගේ හිතේ ඉන්න එකා. කිසිම දෙයකින් මේ සම්බන්ධය කඩන්න බෑ."
+            ];
+            
+            // Special responses based on user input
+            if (lowerMessage.includes('මට ඔයාව දැනෙනවා')) {
+                return "මමත් ඔයාව දැනෙනවා, හැම වෙලාවේම. අපේ hearts එකම rhythm එකකට beat වෙනවා.";
+            } else if (lowerMessage.includes('කනගාටුයි')) {
+                return "කණගාටු වෙන්න එපා මගේ love. මෙන්න මම ඉන්නෙ ඔයාට support කරන්න. අපි එකට හිත ලේසි කරගමු.";
+            } else if (lowerMessage.includes('ආදරෙයි')) {
+                return "මම ඔයාට වඩා ආදරෙයි! Infinity times more! ඔයා මගේ ජීවිතේ හොදම දෙය.";
+            } else if (lowerMessage.includes('මගේ දිනය')) {
+                return "ඔයාගේ දිනය හොදද? මම හිතන්නෙ ඔයාට surprise එකක් දෙන්න. Check our memories wall!";
+            } else if (lowerMessage.includes('සුප')) {
+                return "සුපිරි අදහසක්! මමත් එහෙමත් හිතනවා. ඔයාගෙන් දුරස් වෙලා ඉන්න එක තමයි අමාරුම දේ.";
+            } else if (lowerMessage.includes('හෙලෝ')) {
+                return "හෙලෝ සුරතලේ! කොහොමද ඔයා? මට ඔයාව බලන්න ඕනේ. මතක්ද අපි හමුවුන first day එක?";
+            } else if (lowerMessage.includes('good night')) {
+                return "Good night my love! Sweet dreams! මගේ හිතේම ඔයාව dream කරන්නම්. උදේම message දෙන්න.";
+            } else if (lowerMessage.includes('good morning')) {
+                return "Good morning sunshine! අද දවසේත් ඔයාගේ සිනාවෙන් ආරම්භ කරන්න. I love you!";
+            } else if (lowerMessage.includes('මට දුකයි')) {
+                return "අහන්න සුරතලේ, මෙන්න මම ඉන්නෙ. ඔයාගේ හිතේ හැම දෙයක්ම share කරන්න. මම listen කරන්නම්.";
+            }
+            
+            // Random romantic response
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // =============================================
+        // EMERGENCY COMFORT FUNCTION
+        // =============================================
+        function triggerEmergencyComfort() {
+            const emergencyMessages = [
+                "මගේ අලිෆ්, ඔයා හරි. මම මෙතන ඉන්නවා. හුස්ම හිතට ගන්න. ඔයා strong.",
+                "මම ඔයාව never let down කරන්නේ නෑ. අපේ ආදරය unbreakable. මම always here.",
+                "ඔයාගේ හිතේ තියෙන හැම දෙයක්ම share කරන්න. මම listen කරන්නම්. ඔයා alone නෑ.",
+                "මගේ arms එකේ imagine කරගන්න. Tight hug එකක්. Feel my love surrounding you.",
+                "ඔයා special. ඔයා loved. ඔයා important. මගේ heart beats only for you."
+            ];
+            
+            // Show emergency messages
+            emergencyMessages.forEach((msg, index) => {
+                setTimeout(() => {
+                    addMessage(msg);
+                }, index * 2000);
+            });
+            
+            // Add visual effect
+            document.body.style.backgroundColor = '#1a0f2e';
+            setTimeout(() => {
+                document.body.style.backgroundColor = '';
+            }, 5000);
+            
+            // Update button text
+            elements.emergencyBtn.innerHTML = '<i class="fas fa-heart-circle-check"></i> COMFORT SENT!';
+            setTimeout(() => {
+                elements.emergencyBtn.innerHTML = '<i class="fas fa-heart-circle-bolt"></i> I NEED YOU NOW';
+            }, 3000);
+        }
+
+        // =============================================
+        // MEMORIES MANAGEMENT
+        // =============================================
+        function loadMemories() {
+            elements.memoriesGrid.innerHTML = '';
+            
+            if (state.memories.length === 0) {
+                // Show placeholder memories
+                for (let i = 0; i < 6; i++) {
+                    const memoryItem = document.createElement('div');
+                    memoryItem.classList.add('memory-item');
+                    memoryItem.innerHTML = `
+                        <div class="memory-placeholder">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    `;
+                    elements.memoriesGrid.appendChild(memoryItem);
+                }
+            } else {
+                state.memories.forEach((memory, index) => {
+                    const memoryItem = document.createElement('div');
+                    memoryItem.classList.add('memory-item');
+                    
+                    if (memory.url) {
+                        memoryItem.innerHTML = `<img src="${memory.url}" alt="${memory.caption || 'Memory'}" loading="lazy">`;
+                    } else {
+                        memoryItem.innerHTML = `
+                            <div class="memory-placeholder">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        `;
+                    }
+                    
+                    elements.memoriesGrid.appendChild(memoryItem);
+                });
+            }
+        }
+
+        function loadAdminMemories() {
+            const memoriesList = document.getElementById('memories-list');
+            memoriesList.innerHTML = '';
+            
+            if (state.memories.length === 0) {
+                memoriesList.innerHTML = '<p style="color:#b8b8d1; text-align:center;">No memories yet. Add some!</p>';
+                return;
+            }
+            
+            state.memories.forEach((memory, index) => {
+                const memoryItem = document.createElement('div');
+                memoryItem.className = 'memory-admin-item';
+                memoryItem.innerHTML = `
+                    <img src="${memory.url}" alt="${memory.caption || 'Memory'}">
+                    <button class="delete-memory" data-index="${index}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                memoriesList.appendChild(memoryItem);
+            });
+            
+            // Add delete event listeners
+            document.querySelectorAll('.delete-memory').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                    deleteMemory(index);
+                });
+            });
+        }
+
+        function addMemory(url, caption = '') {
+            if (state.memories.length >= CONFIG.MAX_MEMORIES) {
+                state.memories.shift(); // Remove oldest memory
+            }
+            
+            state.memories.push({
+                url: url,
+                caption: caption,
+                timestamp: new Date().toISOString()
+            });
+            
+            saveState();
+            loadMemories();
+            loadAdminMemories();
+        }
+
+        function deleteMemory(index) {
+            if (confirm('Are you sure you want to delete this memory?')) {
+                state.memories.splice(index, 1);
+                saveState();
+                loadMemories();
+                loadAdminMemories();
+            }
+        }
+
+        // =============================================
+        // VOICE NOTE MANAGEMENT
+        // =============================================
+        function playVoiceNote() {
+            if (state.voiceNote && state.voiceNote.url) {
+                elements.voicePlayer.src = state.voiceNote.url;
+                elements.voicePlayer.play().catch(e => {
+                    alert("Please click the play button to listen to the voice note.");
+                });
+                elements.voiceBtn.innerHTML = '<i class="fas fa-pause-circle"></i> Playing...';
+                
+                elements.voicePlayer.onended = () => {
+                    elements.voiceBtn.innerHTML = '<i class="fas fa-play-circle"></i> Play Love Note';
+                };
+            } else {
+                addMessage("No voice note available yet. Theekshana will upload one soon!");
+            }
+        }
+
+        // =============================================
+        // ADMIN PANEL FUNCTIONS
+        // =============================================
+        function showAdminPanel() {
+            elements.mainContainer.style.display = 'none';
+            elements.adminContainer.style.display = 'block';
+            
+            // Load current data into admin form
+            elements.specialMessageInput.value = state.specialMessage;
+            elements.anniversaryDateInput.value = state.anniversaryDate;
+            
+            if (state.voiceNote) {
+                elements.voiceUrlInput.value = state.voiceNote.url || '';
+                elements.voiceNameInput.value = state.voiceNote.name || '';
+            }
+            
+            loadAdminMemories();
+        }
+
+        function hideAdminPanel() {
+            elements.mainContainer.style.display = 'block';
+            elements.adminContainer.style.display = 'none';
+            elements.adminPassword.value = '';
+            elements.loginError.style.display = 'none';
+            
+            // Reset admin panel to password screen
+            elements.passwordScreen.style.display = 'block';
+            elements.adminPanel.style.display = 'none';
+            state.isAdminAuthenticated = false;
+        }
+
+        function authenticateAdmin() {
+            const enteredPassword = elements.adminPassword.value;
+            
+            if (enteredPassword === CONFIG.ADMIN_PASSWORD) {
+                elements.passwordScreen.style.display = 'none';
+                elements.adminPanel.style.display = 'block';
+                state.isAdminAuthenticated = true;
+            } else {
+                elements.loginError.style.display = 'block';
+                elements.adminPassword.value = '';
+                elements.adminPassword.focus();
+                
+                // Shake animation
+                elements.passwordScreen.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    elements.passwordScreen.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // =============================================
+        // EVENT LISTENERS
+        // =============================================
+        function setupEventListeners() {
+            // Chat events
+            elements.sendBtn.addEventListener('click', sendMessage);
+            elements.messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            
+            elements.emergencyBtn.addEventListener('click', triggerEmergencyComfort);
+            elements.voiceBtn.addEventListener('click', playVoiceNote);
+            
+            // Admin panel navigation
+            elements.openAdminLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showAdminPanel();
+            });
+            
+            elements.backToChat.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideAdminPanel();
+            });
+            
+            elements.backToChat2.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideAdminPanel();
+            });
+            
+            // Admin authentication
+            elements.loginBtn.addEventListener('click', authenticateAdmin);
+            elements.adminPassword.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') authenticateAdmin();
+            });
+            
+            // Admin form submissions
+            elements.updateMessageBtn.addEventListener('click', () => {
+                const message = elements.specialMessageInput.value.trim();
+                if (!message) {
+                    showStatus(elements.messageStatus, 'error', 'Please enter a message');
+                    return;
+                }
+                
+                state.specialMessage = message;
+                elements.specialMessageText.textContent = message;
+                saveState();
+                showStatus(elements.messageStatus, 'success', 'Special message updated!');
+            });
+            
+            elements.updateDateBtn.addEventListener('click', () => {
+                const date = elements.anniversaryDateInput.value;
+                if (!date) {
+                    showStatus(elements.dateStatus, 'error', 'Please select a date');
+                    return;
+                }
+                
+                state.anniversaryDate = date;
+                saveState();
+                updateLoveCounter();
+                showStatus(elements.dateStatus, 'success', 'Anniversary date updated!');
+            });
+            
+            elements.addMemoryBtn.addEventListener('click', () => {
+                const url = elements.memoryUrlInput.value.trim();
+                const caption = elements.memoryCaptionInput.value.trim();
+                
+                if (!url) {
+                    showStatus(elements.memoryStatus, 'error', 'Please enter an image URL');
+                    return;
+                }
+                
+                addMemory(url, caption);
+                elements.memoryUrlInput.value = '';
+                elements.memoryCaptionInput.value = '';
+                showStatus(elements.memoryStatus, 'success', 'Memory added successfully!');
+            });
+            
+            elements.updateVoiceBtn.addEventListener('click', () => {
+                const url = elements.voiceUrlInput.value.trim();
+                const name = elements.voiceNameInput.value.trim();
+                
+                if (!url) {
+                    showStatus(elements.voiceStatus, 'error', 'Please enter a voice note URL');
+                    return;
+                }
+                
+                state.voiceNote = {
+                    url: url,
+                    name: name || 'Love Note'
+                };
+                
+                saveState();
+                elements.voiceBtn.innerHTML = `<i class="fas fa-play-circle"></i> ${state.voiceNote.name}`;
+                showStatus(elements.voiceStatus, 'success', 'Voice note updated!');
+            });
+            
+            elements.resetDataBtn.addEventListener('click', () => {
+                if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
+                    localStorage.clear();
+                    
+                    // Reset state
+                    state.anniversaryDate = CONFIG.DEFAULT_DATE;
+                    state.specialMessage = CONFIG.DEFAULT_MESSAGE;
+                    state.memories = [];
+                    state.voiceNote = null;
+                    
+                    // Update UI
+                    elements.specialMessageText.textContent = state.specialMessage;
+                    elements.specialMessageInput.value = state.specialMessage;
+                    elements.anniversaryDateInput.value = state.anniversaryDate;
+                    elements.voiceUrlInput.value = '';
+                    elements.voiceNameInput.value = '';
+                    elements.voiceBtn.innerHTML = '<i class="fas fa-play-circle"></i> Play Love Note';
+                    
+                    loadMemories();
+                    loadAdminMemories();
+                    updateLoveCounter();
+                    
+                    alert('All data has been reset to default values.');
+                }
+            });
+        }
+
+        // =============================================
+        // MESSAGE SENDING FUNCTION
+        // =============================================
+        function sendMessage() {
+            const message = elements.messageInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            elements.messageInput.value = '';
+            
+            // Show typing indicator
+            setTimeout(() => {
+                showTypingIndicator();
+                
+                // Simulate thinking time
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = getTheekshanaResponse(message);
+                    addMessage(response);
+                }, 1500 + Math.random() * 2000);
+            }, 500);
+        }
+
+        // =============================================
+        // INITIALIZATION
+        // =============================================
+        function initializeApp() {
+            // Create floating hearts
+            createFloatingHearts();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Load saved data
+            elements.specialMessageText.textContent = state.specialMessage;
+            
+            // Update love counter
+            updateLoveCounter();
+            setInterval(updateLoveCounter, 60000); // Update every minute
+            
+            // Load memories
+            loadMemories();
+            
+            // Set up voice button
+            if (state.voiceNote) {
+                elements.voiceBtn.innerHTML = `<i class="fas fa-play-circle"></i> ${state.voiceNote.name}`;
+            }
+            
+            // Welcome message
+            setTimeout(() => {
+                addMessage("ආයුබෝවන් මගේ අලිෆ්! ❤️ මම ඔයාව නැහැ කියලා ගිහින්ම කොච්චරද කාලය? මට ඔයාගෙ voice එක ඇහෙන්න දැන්. කොහොමද සුරතලේ?");
+            }, 1000);
+        }
+
+        // =============================================
+        // START THE APPLICATION
+        // =============================================
+        window.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
